@@ -6,29 +6,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Async & Await - Fetch API</title>
     <style>
-        styles.css
-
-body { font-family: Arial, sans-serif; text-align: center; }
+        body{
+            background-color: pink;
+        }
+        h1{
+            text-align: center;
+            color: red;
+            text-decoration: underline green;
+        }
+        h3{
+            color: blue;
+            text-align: center;
+        }
+        span{
+            font-weight: bolder;
+            color: red;
+            text-transform: uppercase;
+        }
+        .div{
+            border: 2px green solid;
+            height: 110vh;
+            padding: 20px;
+        }
+        h2{
+            color: red;
+        }
+        li{
+            color: brown;
+        }
+        p{
+            color: green;
+        }
     </style>
-</head>
-<body>
-    <h2>Fetch API Example</h2>
-    <button onclick="fetchUser()">Get User</button>
-    <p id="user"></p>
-
-<!----Async Function with Delay (setTimeout Simulation)-->
-
-<h2>Async Delay Example</h2>
-<button onclick="showMessage()">Click Me</button>
-<p id="message"></p>
-
-<!--Fetch Multiple API Data using Promise.all()-->
-
-<!--Async Image Loader-->
-<h2>Async Image Loader</h2>
-<button onclick="loadImage()">Load Image</button>
-<br>
-<img id="image" style="display:none; width:300px;">
+    </head>
+    <body>
+        <h1>ASYNC`& AWAIT </h1>
+        <h3>In JavaScript, <span>`async`</span> and <span>`await`</span> are used for handling asynchronous operations in a more readable and cleaner way, compared to using callbacks or promises directly. Here's how they work:
+</h3>
+<div class="div">
+<h2>async</h2>
+<li>The `async` keyword is used to define a function that returns a `Promise`. </li>
+<li>Any function that is marked as `async` will implicitly return a `Promise`. If the function returns a value, that value is automatically wrapped in a resolved `Promise`. If it throws an error, the `Promise` is rejected.</li>
 
 
-<!--- Error Handling in Async/Await-->
+<p>async function example() { <br>
+  return "Hello, World!"; <br>
+} <br>
+example().then(console.log);  // Outputs: Hello, World!
+</p>
+<h2>await</h2>
+<li>The `await` keyword can only be used inside an `async` function.</li>
+<li>It makes JavaScript wait until the `Promise` is settled (either resolved or rejected) before moving to the next line of code.</li>
+<li>It simplifies the code, making it look synchronous, even though it's running asynchronously behind the scenes.</li>
+
+<p>
+async function fetchData() { <br>
+  let response = await fetch('https://jsonplaceholder.typicode.com/posts'); <br>
+  let data = await response.json(); <br>
+  return data; <br>
+} <br>
+
+fetchData().then(data => console.log(data)); // Outputs data from the API <br>
+</p>
+
+<h2>Putting it together</h2>
+<p>
+async function getUserData(userId) { <br>
+  try { <br>
+    let response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`); <br>
+    let user = await response.json(); <br>
+    console.log(user); <br>
+  } catch (error) { <br>
+    console.error('Error:', error); <br>
+  } <br>
+} <br>
+
+getUserData(1); // Fetches and logs user data from the API <br>
+</p>
+<h2>Key Points:</h2>
+<li> `async` functions always return a `Promise`.</li>
+<li>`await` is used to wait for a `Promise` to resolve or reject before continuing.</li>
+<li> Using `async/await` makes the code easier to read and work with, especially when you need to perform multiple asynchronous operations in a sequence.</li>
+
+</div>
+
+<h1><a href="./more.html"></a></h1>
+    </body>
+    </html>
